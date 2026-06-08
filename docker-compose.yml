@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    image: mahamiftikhar/expense-backend:latest
+    restart: unless-stopped
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/expenseapp
+      - PORT=5000
+    depends_on:
+      - mongo
+
+  frontend:
+    image: mahamiftikhar/expense-frontend:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
