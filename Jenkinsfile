@@ -62,9 +62,8 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                // FIX: correct credential ID 'dockerhub-cred' (previous project mein 'dockerHubCred' tha — wrong)
                 withCredentials([usernamePassword(
-                    credentialsId: 'credentialsId: 'dockerHubCred',',
+                    credentialsId: 'dockerHubCred',
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
@@ -79,7 +78,6 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                // FIX: sleep 40 taake EC2 fully boot ho jaye SSH se pehle
                 sh """
                     sleep 40
                     ssh -i ~/expense-app-key.pem \
