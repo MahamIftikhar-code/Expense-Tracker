@@ -64,7 +64,7 @@ pipeline {
             steps {
                 // FIX: correct credential ID 'dockerhub-cred' (previous project mein 'dockerHubCred' tha — wrong)
                 withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-cred',
+                    credentialsId: 'credentialsId: 'dockerHubCred',',
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
